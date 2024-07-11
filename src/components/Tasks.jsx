@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import "./Tasks.scss";
 import TaskItem from "./TaskItem";
+import AddTask from "./AddTask";
 
 export default function Tasks() {
   const [tasks, setTask] = useState([]);
@@ -31,6 +32,7 @@ export default function Tasks() {
 
       <div className="last-tasks">
         <h3>Últimas tarefas</h3>
+        <AddTask />
         <div className="tasks-list">
           {unfinishedTasks.map((lastTask) => (
             <TaskItem task={lastTask} key={lastTask.id} />
