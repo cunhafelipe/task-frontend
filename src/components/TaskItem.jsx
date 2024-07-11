@@ -1,7 +1,18 @@
 import { AiFillDelete } from "react-icons/ai";
 import "./TaskItem.scss";
+import axios from "axios";
 
 export default function TaskItem({ task }) {
+  async function handleTaskDelete() {
+    try {
+      await axios.delete(
+        "https://task-manager-backend-7y59.onrender.com/tasks/:id"
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="task-item-container">
       <div className="task-description">
@@ -20,7 +31,7 @@ export default function TaskItem({ task }) {
         </label>
       </div>
       <div className="delete">
-        <AiFillDelete size={18} color="#F97474" />
+        <AiFillDelete size={18} color="#F97474" onClick={handleTaskDelete} />
       </div>
     </div>
   );

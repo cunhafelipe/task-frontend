@@ -32,7 +32,7 @@ export default function Tasks() {
 
       <div className="last-tasks">
         <h3>Últimas tarefas</h3>
-        <AddTask />
+        <AddTask fetchTask={fetchTask} />
         <div className="tasks-list">
           {unfinishedTasks.map((lastTask) => (
             <TaskItem task={lastTask} key={lastTask.id} />
