@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import "./Tasks.scss";
+import TaskItem from "./TaskItem";
 
 export default function Tasks() {
   const [tasks, setTask] = useState([]);
@@ -31,8 +32,8 @@ export default function Tasks() {
       <div className="last-tasks">
         <h3>Últimas tarefas</h3>
         <div className="tasks-list">
-          {unfinishedTasks.map((lastTask, index) => (
-            <p key={index}>{lastTask.description}</p>
+          {unfinishedTasks.map((lastTask) => (
+            <TaskItem task={lastTask} key={lastTask.id} />
           ))}
         </div>
       </div>
@@ -40,8 +41,8 @@ export default function Tasks() {
       <div className="completed-tasks">
         <h3>Tarefas Concluídas</h3>
         <div className="tasks-list">
-          {finishedTasks.map((finishedTask, index) => (
-            <p key={index}>{finishedTask.description}</p>
+          {finishedTasks.map((finishedTask) => (
+            <TaskItem task={finishedTask} key={finishedTask.id} />
           ))}
         </div>
       </div>
