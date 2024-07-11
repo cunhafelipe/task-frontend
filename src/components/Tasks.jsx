@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import "./Tasks.scss";
 import TaskItem from "./TaskItem";
 import AddTask from "./AddTask";
+import Swal from "sweetalert2";
 
 export default function Tasks() {
   const [tasks, setTask] = useState([]);
@@ -17,8 +18,15 @@ export default function Tasks() {
         "https://task-manager-backend-7y59.onrender.com/tasks"
       );
       setTask(response.data);
-    } catch (error) {
-      console.log(error);
+    } catch {
+      return Swal.fire({
+        position: "bottom-right",
+        title: "Error!",
+        text: "Algo deu errado.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
@@ -44,7 +52,11 @@ export default function Tasks() {
         <h3>Tarefas Concluídas</h3>
         <div className="tasks-list">
           {finishedTasks.map((finishedTask) => (
-            <TaskItem task={finishedTask} key={finishedTask.id} />
+            <TaskItem
+              task={finishedTask}
+              key={finishedTask.id}
+              fetchTask={fetchTask}
+            />
           ))}
         </div>
       </div>

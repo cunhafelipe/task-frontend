@@ -1,16 +1,27 @@
 import { AiFillDelete } from "react-icons/ai";
-import "./TaskItem.scss";
 import axios from "axios";
+import Swal from "sweetalert2";
 
-export default function TaskItem({ task }) {
+import "./TaskItem.scss";
+
+export default function TaskItem({ task, fetchTasks }) {
   async function handleTaskDelete() {
     try {
       await axios.delete(
-        "https://task-manager-backend-7y59.onrender.com/tasks/:id"
+        `https://task-manager-backend-7y59.onrender.com/tasks/${task._id}`
       );
-    } catch (error) {
-      console.log(error);
+    } catch {
+      return Swal.fire({
+        position: "bottom-right",
+        title: "Error!",
+        text: "Algo deu errado.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
+
+    await fetchTasks();
   }
 
   return (
