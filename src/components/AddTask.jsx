@@ -42,7 +42,7 @@ export default function AddTask({ fetchTasks }) {
         showConfirmButton: false,
         timer: 1500,
       });
-    } catch {
+    } catch (_e) {
       return Swal.fire({
         position: "bottom-right",
         title: "Error!",
