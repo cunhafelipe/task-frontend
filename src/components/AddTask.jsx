@@ -7,7 +7,7 @@ import { FaPlus } from "react-icons/fa";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-export default function AddTask({ fetchTask }) {
+export default function AddTask({ fetchTasks }) {
   const [task, setTask] = useState("");
 
   const onChange = (e) => {
@@ -34,7 +34,7 @@ export default function AddTask({ fetchTask }) {
 
       setTask("");
 
-      await fetchTask();
+      await fetchTasks();
     } catch {
       return Swal.fire({
         position: "bottom-right",
@@ -50,7 +50,7 @@ export default function AddTask({ fetchTask }) {
   return (
     <div className="add-task-container">
       <CustomImput
-        label="Adicinar tarefa..."
+        label="Adicionar tarefa..."
         value={task}
         onChange={onChange}
       />

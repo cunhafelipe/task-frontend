@@ -1,10 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 import "./Tasks.scss";
 import TaskItem from "./TaskItem";
 import AddTask from "./AddTask";
-import Swal from "sweetalert2";
 
 export default function Tasks() {
   const [tasks, setTask] = useState([]);
@@ -18,7 +18,8 @@ export default function Tasks() {
         "https://task-manager-backend-7y59.onrender.com/tasks"
       );
       setTask(response.data);
-    } catch {
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
       return Swal.fire({
         position: "bottom-right",
         title: "Error!",
@@ -40,10 +41,10 @@ export default function Tasks() {
 
       <div className="last-tasks">
         <h3>Últimas tarefas</h3>
-        <AddTask fetchTask={fetchTask} />
+        <AddTask fetchTasks={fetchTask} />
         <div className="tasks-list">
-          {unfinishedTasks.map((lastTask) => (
-            <TaskItem task={lastTask} key={lastTask.id} />
+          {unfinishedTasks.map((lastTask, index) => (
+            <TaskItem task={lastTask} key={index} fetchTasks={fetchTask} />
           ))}
         </div>
       </div>
@@ -51,12 +52,8 @@ export default function Tasks() {
       <div className="completed-tasks">
         <h3>Tarefas Concluídas</h3>
         <div className="tasks-list">
-          {finishedTasks.map((finishedTask) => (
-            <TaskItem
-              task={finishedTask}
-              key={finishedTask.id}
-              fetchTask={fetchTask}
-            />
+          {finishedTasks.map((finishedTask, index) => (
+            <TaskItem task={finishedTask} key={index} fetchTasks={fetchTask} />
           ))}
         </div>
       </div>
