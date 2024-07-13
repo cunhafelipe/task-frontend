@@ -8,6 +8,16 @@
   overflow-y: hidden;
   flex: auto;
 
+  @media (max-width: 1024px) {
+    max-width: 60%;
+    padding: 30px;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 30px;
+  }
+
   h2 {
     margin-bottom: 24px;
   }
