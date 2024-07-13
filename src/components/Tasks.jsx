@@ -18,8 +18,7 @@ export default function Tasks() {
         "https://task-manager-backend-7y59.onrender.com/tasks"
       );
       setTask(response.data);
-    } catch (error) {
-      console.error("Error fetching tasks:", error);
+    } catch (_e) {
       return Swal.fire({
         position: "bottom-right",
         title: "Error!",

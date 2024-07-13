@@ -19,8 +19,7 @@ export default function TaskItem({ task, fetchTasks }) {
         showConfirmButton: false,
         timer: 1500,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (e_) {
       return Swal.fire({
         position: "bottom-right",
         title: "Error!",
@@ -50,8 +49,15 @@ export default function TaskItem({ task, fetchTasks }) {
         showConfirmButton: false,
         timer: 1500,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (_e) {
+      Swal.fire({
+        position: "bottom-right",
+        title: "Erro!",
+        text: "Algo deu errado.",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
