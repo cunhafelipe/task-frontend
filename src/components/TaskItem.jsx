@@ -7,11 +7,18 @@ import "./TaskItem.scss";
 export default function TaskItem({ task, fetchTasks }) {
   const handleTaskDeletion = async () => {
     try {
-      const response = await axios.delete(
+      await axios.delete(
         `https://task-manager-backend-7y59.onrender.com/tasks/${task._id}`
       );
-      console.log("Delete response:", response);
       await fetchTasks();
+      Swal.fire({
+        position: "bottom-right",
+        title: "SUCESSO!",
+        text: "TAREFA EXCLUÍDA",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       console.log(error);
       return Swal.fire({
@@ -37,7 +44,7 @@ export default function TaskItem({ task, fetchTasks }) {
 
       Swal.fire({
         position: "bottom-right",
-        title: "Error!",
+        title: "SUCESSO!",
         text: "A TAREFA FOI MODIFICADA COM SUCESSO!",
         icon: "success",
         showConfirmButton: false,

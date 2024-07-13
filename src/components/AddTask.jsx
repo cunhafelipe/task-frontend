@@ -32,9 +32,16 @@ export default function AddTask({ fetchTasks }) {
         isCompleted: false,
       });
 
-      setTask("");
-
       await fetchTasks();
+      setTask("");
+      Swal.fire({
+        position: "bottom-right",
+        title: "SUCESSO",
+        text: "A TAREFA FOI ADICIONADA",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch {
       return Swal.fire({
         position: "bottom-right",
